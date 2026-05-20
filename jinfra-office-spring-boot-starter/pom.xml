@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>refinex.cn</groupId>
+        <groupId>cn.refinex</groupId>
         <artifactId>jinfra</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
@@ -16,7 +16,7 @@
     <description>Office Spring Boot starter.</description>
 
     <properties>
-        <automatic.module.name>refinex.cn.jinfra.office.spring.boot.starter</automatic.module.name>
+        <automatic.module.name>cn.refinex.jinfra.office.spring.boot.starter</automatic.module.name>
     </properties>
 
     <dependencies>

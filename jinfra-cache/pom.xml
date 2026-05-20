@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>refinex.cn</groupId>
+        <groupId>cn.refinex</groupId>
         <artifactId>jinfra</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
@@ -16,7 +16,7 @@
     <description>Cache SPI, cache manager, TTL, null-value caching, and stampede protection abstractions.</description>
 
     <properties>
-        <automatic.module.name>refinex.cn.jinfra.cache</automatic.module.name>
+        <automatic.module.name>cn.refinex.jinfra.cache</automatic.module.name>
     </properties>
 
     <dependencies>

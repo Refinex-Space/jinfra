@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>refinex.cn</groupId>
+        <groupId>cn.refinex</groupId>
         <artifactId>jinfra</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
@@ -16,7 +16,7 @@
     <description>Core JInfra Spring Boot autoconfiguration module.</description>
 
     <properties>
-        <automatic.module.name>refinex.cn.jinfra.spring.boot.autoconfigure</automatic.module.name>
+        <automatic.module.name>cn.refinex.jinfra.spring.boot.autoconfigure</automatic.module.name>
     </properties>
 
     <dependencies>

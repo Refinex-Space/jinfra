@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>refinex.cn</groupId>
+        <groupId>cn.refinex</groupId>
         <artifactId>jinfra</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
@@ -16,7 +16,7 @@
     <description>Message queue SPI, message model, retry, and acknowledgement abstractions.</description>
 
     <properties>
-        <automatic.module.name>refinex.cn.jinfra.mq</automatic.module.name>
+        <automatic.module.name>cn.refinex.jinfra.mq</automatic.module.name>
     </properties>
 
     <dependencies>

@@ -24,31 +24,6 @@ JInfra 的核心定位是：
 
 ---
 
-## Maven 坐标规划
-
-默认推荐使用 GitHub namespace：
-
-```xml
-<groupId>io.github.refinexcn</groupId>
-```
-
-如果后续已经完成 `refinex.cn` 域名所有权验证，也可以改为：
-
-```xml
-<groupId>cn.refinex</groupId>
-```
-
-JInfra 的 artifactId 统一使用小写字母和连字符：
-
-```text
-jinfra-core
-jinfra-excel
-jinfra-lock-redis
-jinfra-spring-boot-starter
-```
-
----
-
 ## 快速开始
 
 ### 方式一：使用 BOM 管理版本
@@ -254,48 +229,6 @@ jinfra
 | 模块 | 职责 |
 |---|---|
 | `jinfra-test` | 测试基类、随机数据、临时文件、断言增强、测试容器封装预留 |
-
----
-
-## 优先实现路线
-
-### 0.1.x：首发核心版本
-
-- `jinfra-core`
-- `jinfra-json`
-- `jinfra-office`
-- `jinfra-excel`
-- `jinfra-word`
-- `jinfra-ppt`
-- `jinfra-redis`
-- `jinfra-redis-lettuce`
-- `jinfra-lock`
-- `jinfra-lock-redis`
-- `jinfra-mq`
-- `jinfra-mq-redis`
-- `jinfra-bom`
-- `jinfra-all`
-
-### 0.2.x：Spring Boot 增强版本
-
-- `jinfra-spring`
-- `jinfra-spring-boot-autoconfigure`
-- `jinfra-spring-boot-starter`
-- `jinfra-redis-spring`
-- `jinfra-redis-spring-boot-starter`
-- `jinfra-office-spring-boot-starter`
-
-### 0.3.x：企业项目增强版本
-
-- `jinfra-cache`
-- `jinfra-cache-caffeine`
-- `jinfra-cache-redis`
-- `jinfra-context`
-- `jinfra-id`
-- `jinfra-crypto`
-- `jinfra-http`
-- `jinfra-validation`
-- `jinfra-test`
 
 ---
 

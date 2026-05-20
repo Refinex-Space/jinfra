@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>refinex.cn</groupId>
+        <groupId>cn.refinex</groupId>
         <artifactId>jinfra</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
@@ -16,7 +16,7 @@
     <description>Core exceptions, assertions, object helpers, string helpers, collection helpers, result models, and base utilities.</description>
 
     <properties>
-        <automatic.module.name>refinex.cn.jinfra.core</automatic.module.name>
+        <automatic.module.name>cn.refinex.jinfra.core</automatic.module.name>
     </properties>
 
     <dependencies>
