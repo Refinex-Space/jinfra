@@ -1,24 +1,199 @@
-# Compiled class file
+# -----------------------------------------------------------------------------
+# JInfra .gitignore
+# Java 17 / Maven multi-module / Spring Boot 3 / IntelliJ IDEA / VS Code
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# Java compiled files
+# -----------------------------------------------------------------------------
 *.class
-
-# Log file
-*.log
-
-# BlueJ files
 *.ctxt
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# -----------------------------------------------------------------------------
+# Maven build output
+# -----------------------------------------------------------------------------
+target/
+*/target/
+.flattened-pom.xml
 
-# Package Files #
+# Maven local build metadata
+.mvn/timing.properties
+
+# Keep Maven Wrapper files if they are added later
+!mvnw
+!mvnw.cmd
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
+
+# -----------------------------------------------------------------------------
+# Packaged artifacts
+# Normally these should be produced by CI or Maven, not committed.
+# -----------------------------------------------------------------------------
 *.jar
 *.war
-*.nar
 *.ear
+*.nar
 *.zip
+*.tar
 *.tar.gz
+*.tgz
 *.rar
+*.7z
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# Do not accidentally ignore Maven Wrapper jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# -----------------------------------------------------------------------------
+# Logs
+# -----------------------------------------------------------------------------
+*.log
+logs/
+log/
+*.pid
+
+# -----------------------------------------------------------------------------
+# JVM crash logs
+# -----------------------------------------------------------------------------
 hs_err_pid*
 replay_pid*
+javacore.*
+heapdump.*
+*.hprof
+
+# -----------------------------------------------------------------------------
+# Test reports and coverage
+# -----------------------------------------------------------------------------
+surefire-reports/
+failsafe-reports/
+jacoco.exec
+jacoco-*.exec
+coverage/
+.coverage/
+.nyc_output/
+
+# -----------------------------------------------------------------------------
+# IntelliJ IDEA
+# -----------------------------------------------------------------------------
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# -----------------------------------------------------------------------------
+# Eclipse / Spring Tool Suite
+# -----------------------------------------------------------------------------
+.classpath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+
+# -----------------------------------------------------------------------------
+# NetBeans
+# -----------------------------------------------------------------------------
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# -----------------------------------------------------------------------------
+# VS Code
+# Keep the folder ignored by default to avoid user-specific settings.
+# If you want to commit shared recommendations, remove .vscode/ and use:
+#   .vscode/*
+#   !.vscode/extensions.json
+#   !.vscode/settings.json
+# -----------------------------------------------------------------------------
+.vscode/
+
+# -----------------------------------------------------------------------------
+# BlueJ
+# -----------------------------------------------------------------------------
+*.ctxt
+
+# -----------------------------------------------------------------------------
+# OS files
+# -----------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100/
+.Trashes/
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# -----------------------------------------------------------------------------
+# Temporary files
+# -----------------------------------------------------------------------------
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.orig
+*.rej
+*.seed
+*.pid.lock
+*.stackdump
+
+# -----------------------------------------------------------------------------
+# Environment and local configuration
+# -----------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.local
+application-local.yml
+application-local.yaml
+application-local.properties
+bootstrap-local.yml
+bootstrap-local.yaml
+bootstrap-local.properties
+
+# -----------------------------------------------------------------------------
+# Generated Office/temp files
+# Useful for JInfra office module development and tests.
+# -----------------------------------------------------------------------------
+~$*.doc*
+~$*.xls*
+~$*.ppt*
+*.tmp.xlsx
+*.tmp.xls
+*.tmp.docx
+*.tmp.doc
+*.tmp.pptx
+*.tmp.ppt
+
+# -----------------------------------------------------------------------------
+# Redis / local runtime data
+# -----------------------------------------------------------------------------
+dump.rdb
+appendonly.aof
+appendonlydir/
+
+# -----------------------------------------------------------------------------
+# Docker Compose local overrides
+# -----------------------------------------------------------------------------
+docker-compose.override.yml
+compose.override.yml
+
+# -----------------------------------------------------------------------------
+# Node / frontend docs tooling, if documentation site is added later
+# -----------------------------------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+.cache/
+.parcel-cache/
+.vite/
+
+# -----------------------------------------------------------------------------
+# Miscellaneous
+# -----------------------------------------------------------------------------
+.mtj.tmp/
