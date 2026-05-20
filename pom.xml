@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>refinex.cn</groupId>
+    <artifactId>jinfra</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+
+    <name>JInfra</name>
+    <description>A modular Java infrastructure toolkit for enterprise application development.</description>
+    <url>https://github.com/Refinex-Space/jinfra</url>
+    <inceptionYear>2026</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>refinexcn</id>
+            <name>Refinex</name>
+            <email>refinexcn@gmail.com</email>
+            <url>https://github.com/Refinex-Space</url>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/Refinex-Space/jinfra.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/Refinex-Space/jinfra.git</developerConnection>
+        <url>https://github.com/Refinex-Space/jinfra</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/Refinex-Space/jinfra/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>GitHub Actions</system>
+        <url>https://github.com/Refinex-Space/jinfra/actions</url>
+    </ciManagement>
+
+    <modules>
+        <!-- 基础模块 -->
+        <module>jinfra-bom</module>
+        <module>jinfra-all</module>
+
+        <module>jinfra-core</module>
+        <module>jinfra-context</module>
+        <module>jinfra-id</module>
+        <module>jinfra-io</module>
+        <module>jinfra-codec</module>
+        <module>jinfra-crypto</module>
+        <module>jinfra-json</module>
+        <module>jinfra-http</module>
+        <module>jinfra-validation</module>
+
+        <!-- Office 模块 -->
+        <module>jinfra-office</module>
+        <module>jinfra-excel</module>
+        <module>jinfra-word</module>
+        <module>jinfra-ppt</module>
+
+        <!-- Redis、锁、消息队列 -->
+        <module>jinfra-redis</module>
+        <module>jinfra-redis-lettuce</module>
+        <module>jinfra-redis-spring</module>
+
+        <module>jinfra-lock</module>
+        <module>jinfra-lock-redis</module>
+        <module>jinfra-lock-redisson</module>
+
+        <module>jinfra-mq</module>
+        <module>jinfra-mq-redis</module>
+
+        <!-- 缓存模块 -->
+        <module>jinfra-cache</module>
+        <module>jinfra-cache-caffeine</module>
+        <module>jinfra-cache-redis</module>
+
+        <!-- Spring Boot 模块 -->
+        <module>jinfra-spring</module>
+        <module>jinfra-spring-boot-autoconfigure</module>
+        <module>jinfra-spring-boot-starter</module>
+        <module>jinfra-redis-spring-boot-starter</module>
+        <module>jinfra-office-spring-boot-starter</module>
+
+        <!-- 测试模块 -->
+        <module>jinfra-test</module>
+    </modules>
+
+    <properties>
+        <revision>0.1.0-SNAPSHOT</revision>
+
+        <java.version>17</java.version>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        <maven.minimum.version>3.9.0</maven.minimum.version>
+        <automatic.module.name>${project.groupId}.${project.artifactId}</automatic.module.name>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <spring-boot.version>3.5.14</spring-boot.version>
+        <apache-poi.version>5.5.1</apache-poi.version>
+        <jackson.version>2.21.3</jackson.version>
+        <lettuce.version>7.5.2.RELEASE</lettuce.version>
+        <redisson.version>4.4.0</redisson.version>
+        <caffeine.version>3.2.4</caffeine.version>
+        <slf4j.version>2.0.18</slf4j.version>
+        <commons-lang3.version>3.20.0</commons-lang3.version>
+        <commons-io.version>2.22.0</commons-io.version>
+        <commons-codec.version>1.22.0</commons-codec.version>
+        <jakarta-validation.version>3.0.2</jakarta-validation.version>
+        <hibernate-validator.version>8.0.3.Final</hibernate-validator.version>
+        <junit-jupiter.version>5.14.4</junit-jupiter.version>
+        <assertj.version>3.27.7</assertj.version>
+
+        <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
+        <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
+        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.5.5</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.5.5</maven-failsafe-plugin.version>
+        <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
+        <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
+        <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
+        <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
+        <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
+        <maven-enforcer-plugin.version>3.6.3</maven-enforcer-plugin.version>
+        <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
+        <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
+
+        <gpg.skip>true</gpg.skip>
+        <skipTests>false</skipTests>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Boot BOM -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Jackson BOM -->
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Junit BOM -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 聚合非 Spring Boot Starter 的通用能力 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-all</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- 核心异常、断言、对象、字符串、集合、结果模型、基础工具 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- TraceId、TenantId、UserId、MDC、线程上下文传播 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-context</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- UUID、ULID、Snowflake 等 ID 生成能力 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-id</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- 文件、流、临时文件、压缩、路径处理 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-io</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Base64、Hex、URL 编解码 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-codec</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- 摘要、HMAC、AES、RSA、密码哈希等常用加密能力 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-crypto</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Jackson 封装、ObjectMapper 工厂、JSON 工具 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-json</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- 基于 JDK HttpClient 的轻量 HTTP 客户端封装 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-http</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Jakarta Validation 辅助封装 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-validation</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Office 公共抽象、模板模型、文档处理基础能力 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-office</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Excel 读写、模板填充、流式导入导出、样式封装 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-excel</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Word 模板填充、段落、表格、占位符替换 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-word</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- PowerPoint 模板填充、文本框、形状、图片替换 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-ppt</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Redis 抽象层、序列化、Key 规范、Lua 脚本执行接口 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- 基于 Lettuce 的独立 Redis 客户端实现 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-redis-lettuce</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Spring Data Redis 适配层 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-redis-spring</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- 分布式锁 SPI、锁上下文、锁异常、锁执行模板 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-lock</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- 基于 Redis Lua 的分布式锁实现，建议支持 fencing token -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-lock-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Redisson 可选适配实现 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-lock-redisson</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- 消息队列 SPI、消息模型、重试、消费确认抽象 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-mq</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- 基于 Redis Streams 的轻量可靠消息队列实现 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-mq-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- 缓存 SPI、CacheManager、TTL、空值缓存、防击穿抽象 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-cache</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- 基于 Caffeine 的本地缓存实现 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-cache-caffeine</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- 基于 Redis 的分布式缓存实现 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-cache-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Spring 通用辅助类、Bean 工具、环境工具 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-spring</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- JInfra 自动装配核心模块 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-spring-boot-autoconfigure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- 通用 Starter -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Redis、Lock、MQ 相关 Starter -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-redis-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Office 相关 Starter -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-office-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- 测试基类、随机数据、临时文件、断言增强、测试容器封装预留 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>jinfra-test</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- SLF4J 日志门面，提供统一的日志 API，不与具体日志实现绑定 -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <!-- Apache 常用工具类库：字符串处理(StringUtils)、对象工具(ObjectUtils)、枚举、反射、时间日期等 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <!-- IO 操作工具类：文件读写(FileUtils)、流处理(IOUtils)、目录监控、文件过滤器等 -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+
+            <!-- 编解码工具类：MD5/SHA 哈希、Base64、Hex、URL 编码等 -->
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-codec.version}</version>
+            </dependency>
+
+            <!-- Apache POI 的 Office 2007+ 格式支持：读写 Excel(.xlsx)、Word(.docx)、PowerPoint(.pptx) 文件 -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${apache-poi.version}</version>
+            </dependency>
+
+            <!-- 高级 Redis 客户端：异步/响应式支持、集群/Sentinel 模式、连接池、基于 Netty 的高性能通信 -->
+            <dependency>
+                <groupId>io.lettuce</groupId>
+                <artifactId>lettuce-core</artifactId>
+                <version>${lettuce.version}</version>
+            </dependency>
+
+            <!-- 分布式 Redis 客户端：分布式锁(可重入锁/公平锁/读写锁)、分布式集合(Map/Set/Queue)、布隆过滤器、原子数、限流器 -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+
+            <!-- 高性能本地缓存：基于 W-TinyLFU 淘汰策略、异步加载、定时刷新、统计命中率 -->
+            <dependency>
+                <groupId>com.github.ben-manes.caffeine</groupId>
+                <artifactId>caffeine</artifactId>
+                <version>${caffeine.version}</version>
+            </dependency>
+
+            <!-- Jakarta Bean Validation 规范 API：提供 @NotNull、@Size、@Email、@Pattern 等校验注解接口 -->
+            <dependency>
+                <groupId>jakarta.validation</groupId>
+                <artifactId>jakarta.validation-api</artifactId>
+                <version>${jakarta-validation.version}</version>
+            </dependency>
+
+            <!-- Hibernate 实现的 Bean Validation 规范：实际执行校验逻辑、提供额外注解（如 @NotBlank、@URL、@ScriptAssert） -->
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
+            </dependency>
+
+            <!-- JUnit 5 核心模块：单元测试框架，包含 @Test、@BeforeEach、@ParameterizedTest、断言方法等 -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- 流式断言库：提供链式调用的断言语法，如 assertThat(user.getName()).isEqualTo("张三").startsWith("张")，比 JUnit 原生断言更灵活、可读性更强 -->
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- 删除 target 目录，清理构建生成的文件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven-clean-plugin.version}</version>
+                </plugin>
+
+                <!-- 复制资源文件到输出目录，支持变量替换和编码设置 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                    <configuration>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+
+                <!-- 编译 Java 源码，配置 release 版本、启用参数名保留（-parameters）便于反射 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <release>${maven.compiler.release}</release>
+                        <parameters>true</parameters>
+                        <showWarnings>true</showWarnings>
+                    </configuration>
+                </plugin>
+
+                <!-- 执行单元测试，配置跳过测试（skipTests）、禁用模块路径修复 Java 9+ 问题 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <skipTests>${skipTests}</skipTests>
+                        <useModulePath>false</useModulePath>
+                    </configuration>
+                </plugin>
+
+                <!-- 执行集成测试（*IT.java 或 *ITCase.java），区别于 surefire 在打包后运行 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven-failsafe-plugin.version}</version>
+                    <configuration>
+                        <skipTests>${skipTests}</skipTests>
+                        <useModulePath>false</useModulePath>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- 打包 JAR 文件，添加 MANIFEST.MF 条目：实现版本、规范版本、自动模块名（Java 9+ 模块化） -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            </manifest>
+                            <manifestEntries>
+                                <Automatic-Module-Name>${automatic.module.name}</Automatic-Module-Name>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+
+                <!-- 生成源码 JAR（-sources.jar），发布到中央仓库时必需 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                </plugin>
+
+                <!-- 生成 API 文档 JAR（-javadoc.jar），配置编码、源码版本、忽略文档错误（failOnError=false） -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                    <configuration>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <docencoding>${project.reporting.outputEncoding}</docencoding>
+                        <charset>${project.build.sourceEncoding}</charset>
+                        <source>${java.version}</source>
+                        <failOnError>false</failOnError>
+                    </configuration>
+                </plugin>
+
+                <!-- 将构件安装到本地仓库（~/.m2/repository），供本地其他项目使用 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${maven-install-plugin.version}</version>
+                </plugin>
+
+                <!-- 将构件部署到远程仓库（如 Maven Central、Nexus） -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven-deploy-plugin.version}</version>
+                </plugin>
+
+                <!-- 对构件进行 GPG 签名（.asc 文件），发布到 Maven Central 的必要安全要求 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${maven-gpg-plugin.version}</version>
+                    <configuration>
+                        <skip>${gpg.skip}</skip>
+                    </configuration>
+                </plugin>
+
+                <!-- 强制执行规则：Maven 版本要求、JDK 版本约束、依赖版本统一、禁止 SNAPSHOT 发布等 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${maven-enforcer-plugin.version}</version>
+                </plugin>
+
+                <!-- 生成扁平化 POM（flattened-pom.xml），发布时移除父 POM 依赖、CI 配置等不必要信息，避免泄露环境信息 -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>flatten-maven-plugin</artifactId>
+                    <version>${flatten-maven-plugin.version}</version>
+                </plugin>
+
+                <!-- 一键发布到 Sonatype Central（Maven 中央仓库），代替手动上传，自动处理部署流程 -->
+                <plugin>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>${central-publishing-maven-plugin.version}</version>
+                    <extensions>true</extensions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <!-- 环境强制校验 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-build-environment</id>
+                        <goals>
+                            <!-- 执行强制校验规则 -->
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <!-- 规则1：Maven 版本校验 -->
+                                <requireMavenVersion>
+                                    <!-- 示例：[3.6.0,) 表示 >=3.6.0 且只接受正式版，不接受 -SNAPSHOT -->
+                                    <version>[${maven.minimum.version},)</version>
+                                </requireMavenVersion>
+                                <!-- 规则2：Java 版本校验 -->
+                                <requireJavaVersion>
+                                    <!-- 示例：[17,) 表示 >= Java 17 -->
+                                    <version>[${java.version},)</version>
+                                </requireJavaVersion>
+                                <!-- 规则3：插件版本校验 -->
+                                <requirePluginVersions>
+                                    <!-- 强制所有插件必须声明版本号，禁止使用Maven默认版本 -->
+                                    <message>All build plugins must have explicit versions.</message>
+                                </requirePluginVersions>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- 发布配置 -->
+        <profile>
+            <!-- Profile标识：用于激活发布流程（如 mvn deploy -Prelease） -->
+            <id>release</id>
+            <properties>
+                <!-- 启用GPG签名（默认false跳过，发布时设为true） -->
+                <gpg.skip>false</gpg.skip>
+                <!-- 启用测试执行（确保发布前所有测试通过） -->
+                <skipTests>false</skipTests>
+            </properties>
+            <build>
+                <plugins>
+                    <!-- POM 扁平化 -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>flatten-maven-plugin</artifactId>
+                        <configuration>
+                            <!-- OSSRH 发布模式：保留必要信息，移除父POM引用 -->
+                            <flattenMode>ossrh</flattenMode>
+                            <!-- 扁平化后的 POM 覆盖原文件 -->
+                            <updatePomFile>true</updatePomFile>
+                        </configuration>
+                        <executions>
+                            <!-- 执行1：生成扁平化 POM -->
+                            <execution>
+                                <id>flatten</id>
+                                <!-- 在 resources 处理阶段执行 -->
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <!-- 生成 flattened.xml 并替换原 POM -->
+                                    <goal>flatten</goal>
+                                </goals>
+                            </execution>
+                            <!-- 执行2：清理扁平化文件 -->
+                            <execution>
+                                <id>flatten-clean</id>
+                                <!-- 在 clean 阶段执行 -->
+                                <phase>clean</phase>
+                                <goals>
+                                    <!-- 删除 .flattened-pom.xml 等临时文件 -->
+                                    <goal>clean</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- 源码包生成插件 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <!-- 在verify阶段执行（package之后、integration-test之前） -->
+                                <phase>verify</phase>
+                                <goals>
+                                    <!-- 生成源码JAR并附加到当前构建 -->
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- API文档包生成插件 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <!-- 在verify阶段执行（与源码包同步） -->
+                                <phase>verify</phase>
+                                <goals>
+                                    <!-- 生成Javadoc JAR并附加到当前构建 -->
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- GPG签名插件 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <!-- 在verify阶段执行（对主要构件、源码包、文档包进行签名） -->
+                                <phase>verify</phase>
+                                <goals>
+                                    <!-- 生成.asc签名文件（PGP签名） -->
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- 中央仓库发布插件 -->
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <!-- 扩展Maven生命周期，自动绑定deploy阶段 -->
+                        <extensions>true</extensions>
+                        <configuration>
+                            <!-- Maven settings.xml中配置的server id（需包含账号密码） -->
+                            <publishingServerId>central</publishingServerId>
+                            <!-- 手动发布（需人工审核后才发布到中央仓库） -->
+                            <!-- false=在Nexus暂存，需要手动操作发布；true=直接发布 -->
+                            <autoPublish>false</autoPublish>
+                            <!-- 等待部署验证通过后再继续（确保构件完整性） -->
+                            <waitUntil>validated</waitUntil>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
