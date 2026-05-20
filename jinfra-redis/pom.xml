@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>refinex.cn</groupId>
+        <artifactId>jinfra</artifactId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>jinfra-redis</artifactId>
+    <name>JInfra Redis</name>
+    <description>Redis abstractions, serialization, key conventions, and Lua script execution contracts.</description>
+
+    <properties>
+        <automatic.module.name>refinex.cn.jinfra.redis</automatic.module.name>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>jinfra-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>jinfra-json</artifactId>
+        </dependency>
+    </dependencies>
+</project>
