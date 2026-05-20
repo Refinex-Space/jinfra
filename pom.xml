@@ -132,6 +132,7 @@
         <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
         <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
+        <maven-site-plugin.version>3.12.1</maven-site-plugin.version>
         <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
         <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
@@ -575,6 +576,13 @@
                         <source>${java.version}</source>
                         <failOnError>false</failOnError>
                     </configuration>
+                </plugin>
+
+                <!-- 生成 Maven 站点，显式声明版本以满足 enforcer 插件版本校验 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven-site-plugin.version}</version>
                 </plugin>
 
                 <!-- 将构件安装到本地仓库（~/.m2/repository），供本地其他项目使用 -->
