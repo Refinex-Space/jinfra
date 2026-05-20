@@ -197,3 +197,6 @@ dist/
 # Miscellaneous
 # -----------------------------------------------------------------------------
 .mtj.tmp/
+
+# Intelligent agent related
+PLANS.md
