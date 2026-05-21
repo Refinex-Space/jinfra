@@ -16,6 +16,10 @@
     <name>JInfra BOM</name>
     <description>Bill of materials for JInfra modules and managed third-party dependencies.</description>
 
+    <properties>
+        <automatic.module.name>cn.refinex.jinfra.bom</automatic.module.name>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

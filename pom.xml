@@ -135,12 +135,14 @@
         <maven-site-plugin.version>3.12.1</maven-site-plugin.version>
         <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
         <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
+        <maven-antrun-plugin.version>3.2.0</maven-antrun-plugin.version>
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
         <maven-enforcer-plugin.version>3.6.3</maven-enforcer-plugin.version>
         <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
         <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
 
         <gpg.skip>true</gpg.skip>
+        <central.skip>true</central.skip>
         <skipTests>false</skipTests>
     </properties>
 
@@ -600,6 +602,13 @@
                     <version>${maven-deploy-plugin.version}</version>
                 </plugin>
 
+                <!-- 执行轻量构建辅助任务，例如为暂无源码的模块准备最小 Javadoc 目录 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>${maven-antrun-plugin.version}</version>
+                </plugin>
+
                 <!-- 对构件进行 GPG 签名（.asc 文件），发布到 Maven Central 的必要安全要求 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -607,6 +616,11 @@
                     <version>${maven-gpg-plugin.version}</version>
                     <configuration>
                         <skip>${gpg.skip}</skip>
+                        <gpgArguments>
+                            <arg>--batch</arg>
+                            <arg>--pinentry-mode</arg>
+                            <arg>loopback</arg>
+                        </gpgArguments>
                     </configuration>
                 </plugin>
 
@@ -630,6 +644,9 @@
                     <artifactId>central-publishing-maven-plugin</artifactId>
                     <version>${central-publishing-maven-plugin.version}</version>
                     <extensions>true</extensions>
+                    <configuration>
+                        <skipPublishing>${central.skip}</skipPublishing>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -680,6 +697,8 @@
             <properties>
                 <!-- 启用GPG签名（默认false跳过，发布时设为true） -->
                 <gpg.skip>false</gpg.skip>
+                <!-- 启用 Central 发布；本地/CI 预演可通过 -Dcentral.skip=true 跳过真实上传 -->
+                <central.skip>false</central.skip>
                 <!-- 启用测试执行（确保发布前所有测试通过） -->
                 <skipTests>false</skipTests>
             </properties>
@@ -742,13 +761,66 @@
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>attach-javadocs</id>
+                                <id>generate-javadocs</id>
                                 <!-- 在verify阶段执行（与源码包同步） -->
                                 <phase>verify</phase>
                                 <goals>
-                                    <!-- 生成Javadoc JAR并附加到当前构建 -->
+                                    <!-- 生成 Javadoc 站点内容；暂无源码时保留预置的最小目录 -->
+                                    <goal>javadoc-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- 最小 Javadoc 目录准备；当前骨架模块暂无源码时仍可产出中央仓库要求的附件 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>prepare-minimal-javadocs</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <mkdir dir="${project.reporting.outputDirectory}/apidocs"/>
+                                        <echo file="${project.reporting.outputDirectory}/apidocs/index.html"><![CDATA[<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>${project.name} API Documentation</title>
+</head>
+<body>
+  <h1>${project.name} API Documentation</h1>
+  <p>No public Java API documentation has been generated yet.</p>
+</body>
+</html>
+]]></echo>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- 将 Javadoc 目录打包为 -javadoc.jar；空骨架模块也需要稳定产出该附件 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <phase>verify</phase>
+                                <goals>
                                     <goal>jar</goal>
                                 </goals>
+                                <configuration>
+                                    <classifier>javadoc</classifier>
+                                    <classesDirectory>${project.reporting.outputDirectory}/apidocs</classesDirectory>
+                                    <skipIfEmpty>false</skipIfEmpty>
+                                    <forceCreation>true</forceCreation>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -777,13 +849,15 @@
                         <!-- 扩展Maven生命周期，自动绑定deploy阶段 -->
                         <extensions>true</extensions>
                         <configuration>
+                            <!-- 本地/CI 预演时跳过真实上传，正式发布时由 release profile 打开 -->
+                            <skipPublishing>${central.skip}</skipPublishing>
                             <!-- Maven settings.xml中配置的server id（需包含账号密码） -->
                             <publishingServerId>central</publishingServerId>
                             <!-- 手动发布（需人工审核后才发布到中央仓库） -->
                             <!-- false=在Nexus暂存，需要手动操作发布；true=直接发布 -->
                             <autoPublish>false</autoPublish>
                             <!-- 等待部署验证通过后再继续（确保构件完整性） -->
-                            <waitUntil>validated</waitUntil>
+                            <waitUntil>VALIDATED</waitUntil>
                         </configuration>
                     </plugin>
                 </plugins>
