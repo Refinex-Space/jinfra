@@ -570,8 +570,8 @@ class ResultTest {
 
     @Test
     @DisplayName("无数据成功结果应使用 SUCCESS 错误码")
-    void shouldCreateSuccessWithoutData() {
-        Result<Void> result = Result.success();
+    void shouldCreateOkWithoutData() {
+        Result<Void> result = Result.ok();
 
         assertThat(result.success()).isTrue();
         assertThat(result.code()).isEqualTo("SUCCESS");
@@ -667,7 +667,7 @@ public record Result<T>(boolean success, String code, String message, T data) {
      *
      * @return 成功结果
      */
-    public static Result<Void> success() {
+    public static Result<Void> ok() {
         return new Result<>(true, CoreErrorCode.SUCCESS.code(), CoreErrorCode.SUCCESS.message(), null);
     }
 

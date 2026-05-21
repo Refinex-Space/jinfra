@@ -15,6 +15,9 @@ public class JInfraException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 稳定错误码。
+     */
     private final String code;
 
     /**

@@ -100,11 +100,13 @@ cn.refinex.jinfra.core
 
 ### `Result<T>`
 
-- `success()`
+- `ok()`
 - `success(T data)`
 - `failure(String code, String message)`
 - `failure(ErrorCode errorCode)`
 - `failure(ErrorCode errorCode, String message)`
+
+说明：`Result<T>` 是 Java record，组件 `boolean success` 会自动生成实例访问器 `success()`。因此无数据成功工厂使用 `ok()`，避免与 record accessor 产生 Java 方法签名冲突。
 
 ### `AssertUtils`
 
