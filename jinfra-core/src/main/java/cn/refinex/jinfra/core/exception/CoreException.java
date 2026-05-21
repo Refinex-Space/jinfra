@@ -2,6 +2,8 @@ package cn.refinex.jinfra.core.exception;
 
 import cn.refinex.jinfra.core.error.ErrorCode;
 
+import java.io.Serial;
+
 /**
  * core 模块使用的基础异常。
  *
@@ -10,6 +12,7 @@ import cn.refinex.jinfra.core.error.ErrorCode;
  */
 public class CoreException extends JInfraRuntimeException {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**
