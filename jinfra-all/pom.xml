@@ -82,10 +82,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>jinfra-redis-spring</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>jinfra-lock</artifactId>
         </dependency>
         <dependency>
@@ -115,14 +111,6 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>jinfra-cache-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>jinfra-spring</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>jinfra-test</artifactId>
         </dependency>
     </dependencies>
 </project>
