@@ -18,8 +18,14 @@ public final class Ulid {
      */
     public static final long MAX_TIMESTAMP = (1L << 48) - 1;
 
+    /**
+     * ULID 编码字符集。
+     */
     private static final char[] ENCODING = "0123456789ABCDEFGHJKMNPQRSTVWXYZ".toCharArray();
 
+    /**
+     * 私有构造函数，防止实例化。
+     */
     private Ulid() {
         throw new AssertionError("No cn.refinex.jinfra.id.ulid.Ulid instances");
     }

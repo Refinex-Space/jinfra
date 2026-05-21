@@ -13,20 +13,44 @@ import java.time.Clock;
  */
 public final class SnowflakeIdGenerator implements IdGenerator<Long> {
 
+    /**
+     * Snowflake 风格 ID 生成配置
+     */
     private final SnowflakeConfig config;
 
+    /**
+     * 时钟
+     */
     private final Clock clock;
 
+    /**
+     * 最大时间戳
+     */
     private final long maxTimestamp;
 
+    /**
+     * 最大序列号
+     */
     private final long maxSequence;
 
+    /**
+     * 时间戳左移位数
+     */
     private final int timestampShift;
 
+    /**
+     * 工作机器 ID 左移位数
+     */
     private final int workerIdShift;
 
+    /**
+     * 上次生成 ID 的时间戳
+     */
     private long lastTimestamp = -1L;
 
+    /**
+     * 序列号
+     */
     private long sequence;
 
     /**
@@ -38,6 +62,7 @@ public final class SnowflakeIdGenerator implements IdGenerator<Long> {
     public SnowflakeIdGenerator(SnowflakeConfig config, Clock clock) {
         AssertUtils.notNull(config, "snowflake config must not be null");
         AssertUtils.notNull(clock, "clock must not be null");
+
         this.config = config;
         this.clock = clock;
         this.maxTimestamp = SnowflakeConfig.maxValue(config.timestampBits());
@@ -73,6 +98,11 @@ public final class SnowflakeIdGenerator implements IdGenerator<Long> {
                 | sequence;
     }
 
+    /**
+     * 获取当前相对时间戳。
+     *
+     * @return 当前相对时间戳
+     */
     private long currentRelativeTimestamp() {
         long timestamp = clock.millis() - config.epochMillis();
         if (timestamp < 0 || timestamp > maxTimestamp) {
@@ -81,10 +111,14 @@ public final class SnowflakeIdGenerator implements IdGenerator<Long> {
         return timestamp;
     }
 
+    /**
+     * 处理时钟倒退。
+     *
+     * @param timestamp 当前时间戳
+     */
     private void handleClockBackwards(long timestamp) {
         if (config.clockBackwardsStrategy() == ClockBackwardsStrategy.FAIL_FAST) {
-            throw new IdGenerationException(
-                    "snowflake clock moved backwards from " + lastTimestamp + " to " + timestamp);
+            throw new IdGenerationException("snowflake clock moved backwards from " + lastTimestamp + " to " + timestamp);
         }
         throw new IdGenerationException("unsupported snowflake clock backwards strategy");
     }

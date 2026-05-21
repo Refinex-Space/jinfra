@@ -10,10 +10,21 @@ import cn.refinex.jinfra.core.util.AssertUtils;
  */
 public final class ContextScope implements AutoCloseable {
 
+    /**
+     * 关闭动作。
+     */
     private final Runnable closeAction;
 
+    /**
+     * 是否已关闭。
+     */
     private boolean closed;
 
+    /**
+     * 使用关闭动作创建上下文作用域。
+     *
+     * @param closeAction 关闭时执行的动作
+     */
     private ContextScope(Runnable closeAction) {
         AssertUtils.notNull(closeAction, "context scope close action must not be null");
         this.closeAction = closeAction;

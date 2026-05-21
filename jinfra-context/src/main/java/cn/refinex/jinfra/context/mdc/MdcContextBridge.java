@@ -16,6 +16,9 @@ import org.slf4j.MDC;
  */
 public final class MdcContextBridge {
 
+    /**
+     * 已知的上下文键。
+     */
     private static final List<ContextKey<String>> KNOWN_KEYS = List.of(
             ContextKey.TRACE_ID,
             ContextKey.TENANT_ID,

@@ -11,8 +11,16 @@ import java.util.UUID;
  */
 public final class UuidGenerator implements IdGenerator<String> {
 
+    /**
+     * 是否连字符。
+     */
     private final boolean hyphenated;
 
+    /**
+     * 创建 UUID 生成器。
+     *
+     * @param hyphenated 是否连字符
+     */
     private UuidGenerator(boolean hyphenated) {
         this.hyphenated = hyphenated;
     }

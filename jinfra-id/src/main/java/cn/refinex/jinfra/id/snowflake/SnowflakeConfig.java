@@ -37,11 +37,9 @@ public record SnowflakeConfig(
         AssertUtils.isTrue(timestampBits > 0, "snowflake timestampBits must be positive");
         AssertUtils.isTrue(workerIdBits > 0, "snowflake workerIdBits must be positive");
         AssertUtils.isTrue(sequenceBits > 0, "snowflake sequenceBits must be positive");
-        AssertUtils.isTrue(timestampBits + workerIdBits + sequenceBits <= Long.SIZE - 1,
-                "snowflake total bits must not exceed 63");
+        AssertUtils.isTrue(timestampBits + workerIdBits + sequenceBits <= Long.SIZE - 1, "snowflake total bits must not exceed 63");
         AssertUtils.notNull(clockBackwardsStrategy, "snowflake clockBackwardsStrategy must not be null");
-        AssertUtils.isTrue(workerId >= 0 && workerId <= maxValue(workerIdBits),
-                "snowflake workerId is out of range");
+        AssertUtils.isTrue(workerId >= 0 && workerId <= maxValue(workerIdBits), "snowflake workerId is out of range");
     }
 
     /**

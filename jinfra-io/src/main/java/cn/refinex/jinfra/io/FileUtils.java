@@ -97,6 +97,11 @@ public final class FileUtils {
         }
     }
 
+    /**
+     * 删除单个路径。
+     *
+     * @param path 路径
+     */
     private static void deleteSinglePath(Path path) {
         try {
             Files.deleteIfExists(path);

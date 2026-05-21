@@ -15,14 +15,29 @@ import java.util.Arrays;
  */
 public final class UlidGenerator implements IdGenerator<String> {
 
+    /**
+     * 随机数长度。
+     */
     private static final int RANDOMNESS_BYTES = 10;
 
+    /**
+     * 时钟。
+     */
     private final Clock clock;
 
+    /**
+     * 安全随机源。
+     */
     private final SecureRandom random;
 
+    /**
+     * 上次生成 ID 的时间戳。
+     */
     private long lastTimestamp = -1L;
 
+    /**
+     * 上次生成 ID 的随机数。
+     */
     private byte[] lastRandomness = new byte[RANDOMNESS_BYTES];
 
     /**
@@ -63,6 +78,11 @@ public final class UlidGenerator implements IdGenerator<String> {
         return Ulid.encode(timestamp, randomness);
     }
 
+    /**
+     * 随机数加一。
+     *
+     * @param randomness 随机数
+     */
     private static void increment(byte[] randomness) {
         for (int index = randomness.length - 1; index >= 0; index--) {
             int value = randomness[index] & 0xFF;

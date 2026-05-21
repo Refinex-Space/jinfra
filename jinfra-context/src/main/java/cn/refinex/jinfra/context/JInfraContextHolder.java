@@ -59,6 +59,7 @@ public final class JInfraContextHolder {
      */
     public static ContextScope open(ContextSnapshot snapshot) {
         AssertUtils.notNull(snapshot, "context snapshot must not be null");
+
         JInfraContext previousContext = current();
         set(snapshot.context());
         return ContextScope.onClose(() -> set(previousContext));

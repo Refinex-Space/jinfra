@@ -67,6 +67,13 @@ public final class ZipUtils {
         }
     }
 
+    /**
+     * 写入 ZIP 条目。
+     *
+     * @param sourceDir 源目录
+     * @param file 文件
+     * @param output 输出流
+     */
     private static void writeZipEntry(Path sourceDir, Path file, ZipOutputStream output) {
         String entryName = sourceDir.relativize(file).toString().replace('\\', '/');
         try (InputStream input = Files.newInputStream(file)) {
@@ -78,6 +85,14 @@ public final class ZipUtils {
         }
     }
 
+    /**
+     * 解压 ZIP 条目。
+     *
+     * @param input 输入流
+     * @param entry 条目
+     * @param targetDir 目标目录
+     * @throws IOException 如果解压失败
+     */
     private static void unzipEntry(ZipInputStream input, ZipEntry entry, Path targetDir) throws IOException {
         Path target = PathUtils.ensureInside(targetDir, targetDir.resolve(entry.getName()));
         if (entry.isDirectory()) {

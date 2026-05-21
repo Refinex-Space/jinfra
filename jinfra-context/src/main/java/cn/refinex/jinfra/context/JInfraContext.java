@@ -13,10 +13,21 @@ import java.util.Map;
  */
 public final class JInfraContext {
 
+    /**
+     * 空上下文。
+     */
     private static final JInfraContext EMPTY = new JInfraContext(Map.of());
 
+    /**
+     * 上下文键值对。
+     */
     private final Map<String, String> values;
 
+    /**
+     * 使用指定的键值对创建上下文。
+     *
+     * @param values 键值对
+     */
     private JInfraContext(Map<String, String> values) {
         this.values = Collections.unmodifiableMap(new LinkedHashMap<>(values));
     }
@@ -62,6 +73,7 @@ public final class JInfraContext {
     public JInfraContext put(ContextKey<String> key, String value) {
         AssertUtils.notNull(key, "context key must not be null");
         AssertUtils.notNull(value, "context value must not be null");
+
         Map<String, String> copiedValues = new LinkedHashMap<>(values);
         copiedValues.put(key.name(), value);
         return new JInfraContext(copiedValues);
@@ -78,11 +90,13 @@ public final class JInfraContext {
         if (!values.containsKey(key.name())) {
             return this;
         }
+
         Map<String, String> copiedValues = new LinkedHashMap<>(values);
         copiedValues.remove(key.name());
         if (copiedValues.isEmpty()) {
             return EMPTY;
         }
+
         return new JInfraContext(copiedValues);
     }
 
